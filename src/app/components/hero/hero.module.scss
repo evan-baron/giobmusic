@@ -8,14 +8,109 @@
 		height: 100%;
 		width: 100%;
 
+		display: flex;
+		justify-content: center;
+
 		.background {
-			position: relative;
-			border: 1px solid red;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0;
+			left: 0;
+			z-index: -1;
 
 			.video {
 				object-fit: cover;
 				width: 100%;
 				height: 100%;
+			}
+		}
+
+		.content {
+			position: absolute;
+			width: 650px;
+			bottom: 100px;
+			right: 150px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+
+			.carousel-wrapper {
+				width: 650px;
+				overflow: hidden;
+				position: relative;
+				border-radius: 1rem;
+				background-color: hsla(0, 0%, 15%, 0.75);
+				box-shadow: 0.5rem 0.5rem 2rem black;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				// Mask for the carousel (what makes it look like there's padding)
+				.mask {
+					width: 80%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					overflow: hidden;
+
+					.carousel {
+						width: 100%;
+						display: flex;
+
+						.review {
+							min-width: 100%;
+							height: 325px;
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
+							gap: 1rem;
+							color: white;
+							padding: 0 0.25rem;
+
+							.review-text {
+								font-size: 1.5rem;
+								line-height: 1.125;
+								text-wrap: pretty;
+							}
+
+							.author {
+								font-size: 1.125rem;
+								line-height: 1.125;
+								letter-spacing: 0.5px;
+							}
+
+							.star {
+								color: yellow;
+								font-size: 1.5rem;
+							}
+						}
+					}
+				}
+			}
+
+			.cta {
+				all: unset;
+				display: flex;
+				width: 100%;
+				height: 4rem;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-size: 1.75rem;
+				border-radius: 1rem;
+				background-color: hsla(0, 0%, 15%, 0.75);
+				box-shadow: 0.5rem 0.5rem 2rem black;
+				border: 2px solid hsla(0, 100%, 100%, 1);
+				cursor: pointer;
+				transition: background-color 0.3s ease-in-out;
+
+				&.hover-enabled {
+					&:hover {
+						background-color: hsla(0, 0%, 50%, 0.75);
+					}
+				}
 			}
 		}
 	}

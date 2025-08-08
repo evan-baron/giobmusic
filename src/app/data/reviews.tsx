@@ -7,7 +7,7 @@ export interface ReviewData {
 
 const baseLink = 'https://www.gigsalad.com/gio_barabadze_denver/review/';
 
-export const tileData: ReviewData[] = [
+export const ReviewData: ReviewData[] = [
 	{
 		review:
 			'Gio was AMAZING! Everyone loved him and his music was perfect for our event!',
