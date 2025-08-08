@@ -9,7 +9,7 @@ import Link from 'next/link';
 import styles from './header.module.scss';
 
 // Hooks imports
-import { useScrollValue } from './useScrollValue';
+import { useScrollValue } from '../../../lib/hooks/useScrollValue';
 
 // Context
 import { useAppContext } from '@/app/context/AppContext';
@@ -24,10 +24,18 @@ function Header() {
 		: useScrollValue('17.5rem', '14rem');
 	const navFontSize = isTouchDevice
 		? '1.25rem'
-		: useScrollValue('1.75rem', '1.25rem');
+		: useScrollValue('2.5rem', '2rem');
+	const ulGap = isTouchDevice ? '2rem' : useScrollValue('3rem', '2rem');
+	const navOpacity = isTouchDevice ? 1 : useScrollValue(0, 0.9);
 
 	return (
-		<div className={styles['header-wrapper']} style={{ height: headerHeight }}>
+		<div
+			className={styles['header-wrapper']}
+			style={{
+				height: headerHeight,
+				backgroundColor: `hsla(0, 0%, 0%, ${navOpacity})`,
+			}}
+		>
 			<header className={styles.header}>
 				<nav>
 					<Link href='#top'>
@@ -36,7 +44,7 @@ function Header() {
 							style={{ height: logoHeight, width: logoWidth }}
 						>
 							<Image
-								src='/logo-white.webp'
+								src='/logo-white-moondance.webp'
 								alt='Logo'
 								fill
 								className={styles.image}
@@ -44,24 +52,36 @@ function Header() {
 							/>
 						</div>
 					</Link>
-					<ul style={{ fontSize: navFontSize }}>
+					<ul style={{ fontSize: navFontSize, gap: ulGap }}>
 						<li>
-							<Link href='#bio'>About</Link>
+							<Link className={styles.link} href='#bio'>
+								About
+							</Link>
 						</li>
 						<li>
-							<Link href='/services'>Music</Link>
+							<Link className={styles.link} href='/services'>
+								Music
+							</Link>
 						</li>
 						<li>
-							<Link href='/faq'>Events</Link>
+							<Link className={styles.link} href='/faq'>
+								Events
+							</Link>
 						</li>
 						<li>
-							<Link href='/blog'>Gallery</Link>
+							<Link className={styles.link} href='/blog'>
+								Gallery
+							</Link>
 						</li>
 						<li>
-							<Link href='/faq'>Reviews</Link>
+							<Link className={styles.link} href='/faq'>
+								Reviews
+							</Link>
 						</li>
 						<li>
-							<Link href='/contact'>Book Now</Link>
+							<Link className={styles.link} href='/contact'>
+								Book Now
+							</Link>
 						</li>
 					</ul>
 				</nav>
