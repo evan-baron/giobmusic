@@ -26,7 +26,7 @@ function Header() {
 		? '1.25rem'
 		: useScrollValue('2.5rem', '2rem');
 	const ulGap = isTouchDevice ? '2rem' : useScrollValue('3rem', '2rem');
-	const navOpacity = isTouchDevice ? 1 : useScrollValue(0, 0.9);
+	const navOpacity = isTouchDevice ? 0.9 : useScrollValue(0, 0.9);
 
 	return (
 		<div
