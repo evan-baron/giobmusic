@@ -33,7 +33,7 @@ function Header() {
 			className={styles['header-wrapper']}
 			style={{
 				height: headerHeight,
-				backgroundColor: `hsla(0, 0%, 0%, ${navOpacity})`,
+				backgroundImage: `linear-gradient(to bottom, black, hsla(0, 0%, 0%, ${navOpacity}))`,
 			}}
 		>
 			<header className={styles.header}>

@@ -16,7 +16,7 @@ const Hero = () => {
 			<div className={styles.hero}>
 				<div className={styles.background}>
 					<video
-						// src='/bgVidFinal.mp4'
+						src='/bgVidFinal.mp4'
 						className={styles.video}
 						autoPlay
 						loop
