@@ -1,7 +1,10 @@
+// Library imports
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 // Styles imports
-import styles from './header.module.css';
+import styles from './header.module.scss';
 
 function Header() {
 	return (
@@ -10,22 +13,35 @@ function Header() {
 				<nav>
 					<ul>
 						<li>
-							<a href='#top'>Home</a>
+							<Link href='#top'>
+								<div className={styles.logo}>
+									<Image
+										src='/logo.png'
+										alt='Logo'
+										fill
+										className={styles.image}
+										sizes='(max-width: 768px) 20vw, (max-width: 1200px) 15vw, 10rem'
+									/>
+								</div>
+							</Link>
 						</li>
 						<li>
-							<a href='#bio'>About</a>
+							<Link href='#bio'>About</Link>
 						</li>
 						<li>
-							<a href='/services'>Music</a>
+							<Link href='/services'>Music</Link>
 						</li>
 						<li>
-							<a href='/blog'>Gallery</a>
+							<Link href='/faq'>Events</Link>
 						</li>
 						<li>
-							<a href='/faq'>Reviews</a>
+							<Link href='/blog'>Gallery</Link>
 						</li>
 						<li>
-							<a href='/contact'>Book Now</a>
+							<Link href='/faq'>Reviews</Link>
+						</li>
+						<li>
+							<Link href='/contact'>Book Now</Link>
 						</li>
 					</ul>
 				</nav>

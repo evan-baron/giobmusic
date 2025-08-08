@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './reset.css';
 import './globals.scss';
 
+// Context
+import { ContextProvider } from './context/AppContext';
+
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -26,7 +29,7 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				{children}
+				<ContextProvider>{children}</ContextProvider>
 			</body>
 		</html>
 	);
