@@ -11,11 +11,20 @@ import styles from './header.module.scss';
 // Hooks imports
 import { useScrollValue } from './useScrollValue';
 
+// Context
+import { useAppContext } from '@/app/context/AppContext';
+
 function Header() {
-	const headerHeight = useScrollValue('10rem', '6rem');
-	const logoHeight = useScrollValue('7.5rem', '6rem');
-	const logoWidth = useScrollValue('17.5rem', '14rem');
-	const navFontSize = useScrollValue('1.75rem', '1.25rem');
+	const { isTouchDevice } = useAppContext();
+
+	const headerHeight = isTouchDevice ? '6rem' : useScrollValue('10rem', '6rem');
+	const logoHeight = isTouchDevice ? '6rem' : useScrollValue('7.5rem', '6rem');
+	const logoWidth = isTouchDevice
+		? '14rem'
+		: useScrollValue('17.5rem', '14rem');
+	const navFontSize = isTouchDevice
+		? '1.25rem'
+		: useScrollValue('1.75rem', '1.25rem');
 
 	return (
 		<div className={styles['header-wrapper']} style={{ height: headerHeight }}>
