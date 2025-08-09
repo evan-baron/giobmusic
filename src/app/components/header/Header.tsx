@@ -54,34 +54,57 @@ function Header() {
 					</Link>
 					<ul style={{ fontSize: navFontSize, gap: ulGap }}>
 						<li>
-							<Link className={styles.link} href='#bio'>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='#bio'
+							>
 								About
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.link} href='/services'>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='/services'
+							>
 								Music
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.link} href='/faq'>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='/faq'
+							>
 								Events
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.link} href='/blog'>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='/blog'
+							>
 								Gallery
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.link} href='/faq'>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='/faq'
+							>
 								Reviews
 							</Link>
 						</li>
-						<li>
-							<Link className={styles.link} href='/contact'>
-								Book Now
-							</Link>
+						<li className={`${!isTouchDevice && styles['hover-enabled']}`}>
+							<Link href='#contact'>Book Now</Link>
 						</li>
 					</ul>
 				</nav>
