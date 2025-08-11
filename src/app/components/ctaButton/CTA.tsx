@@ -21,9 +21,7 @@ const CTA = ({ parent }: { parent: string }) => {
 		<Link
 			href='/booking'
 			type='button'
-			className={`${styles.cta} ${!isTouchDevice && styles['hover-enabled']} ${
-				styles[parent]
-			}`}
+			className={`${styles.cta} ${styles[parent]}`}
 		>
 			Book Now
 		</Link>

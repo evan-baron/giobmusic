@@ -23,7 +23,7 @@
 
 		transition: background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 
-		&.hover-enabled {
+		@media (hover: hover) and (pointer: fine) {
 			&:hover {
 				background-color: hsla(0, 0%, 100%, 0.25);
 				box-shadow: 0 0 0.5rem white, 0 0 1rem white;
@@ -31,7 +31,7 @@
 		}
 	}
 
-	&.hover-enabled {
+	@media (hover: hover) and (pointer: fine) {
 		&:hover {
 			background-color: hsla(0, 0%, 50%, 0.75);
 		}

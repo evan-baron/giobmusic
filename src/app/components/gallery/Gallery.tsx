@@ -1,5 +1,6 @@
 // Library imports
 import React from 'react';
+import Image from 'next/image';
 
 // Hooks imports
 
@@ -11,7 +12,21 @@ import styles from './gallery.module.scss';
 // Context imports
 
 const Gallery = () => {
-	return <div className={styles['gallery-wrapper']}>Gallery</div>;
+	return (
+		<div className={styles['gallery-wrapper']}>
+			<div className={styles.gallery}>
+				<div className={styles.content}>
+					<h2>Gallery</h2>
+					<div className={styles.carousel}>
+						<div className={styles.left}></div>
+						<div className={styles.image}></div>
+						<div className={styles.right}></div>
+					</div>
+					<div className={styles['carousel-select']}></div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Gallery;

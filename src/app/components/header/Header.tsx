@@ -1,7 +1,7 @@
 'use client';
 
 // Library imports
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,9 +10,6 @@ import styles from './header.module.scss';
 
 // Hooks imports
 import { useScrollValue } from '../../../lib/hooks/useScrollValue';
-
-// Components imports
-import CTA from '../ctaButton/CTA';
 
 // Context
 import { useAppContext } from '@/app/context/AppContext';
@@ -57,66 +54,36 @@ function Header() {
 					</Link>
 					<ul style={{ fontSize: navFontSize, gap: ulGap }}>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='#bio'
-							>
+							<Link className={styles.link} href='#bio'>
 								About
 							</Link>
 						</li>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='#music'
-							>
+							<Link className={styles.link} href='#music'>
 								Music
 							</Link>
 						</li>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='#events'
-							>
+							<Link className={styles.link} href='#events'>
 								Events
 							</Link>
 						</li>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='/gallery'
-							>
+							<Link className={styles.link} href='/gallery'>
 								Gallery
 							</Link>
 						</li>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='/services'
-							>
+							<Link className={styles.link} href='/services'>
 								Services
 							</Link>
 						</li>
 						<li>
-							<Link
-								className={`${styles.link} ${
-									!isTouchDevice && styles['hover-enabled']
-								}`}
-								href='#reviews'
-							>
+							<Link className={styles.link} href='#reviews'>
 								Reviews
 							</Link>
 						</li>
-						<li className={`${!isTouchDevice && styles['hover-enabled']}`}>
+						<li>
 							<Link href='#contact'>Book Now</Link>
 						</li>
 					</ul>

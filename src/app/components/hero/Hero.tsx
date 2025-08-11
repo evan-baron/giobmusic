@@ -105,15 +105,6 @@ const Hero = () => {
 						</div>
 					</div>
 					<CTA parent='hero' />
-					{/* <button
-						type='button'
-						className={`${styles.cta} ${
-							!isTouchDevice && styles['hover-enabled']
-						}`}
-						onClick={() => (window.location.hash = 'contact')}
-					>
-						Book Now
-					</button> */}
 				</div>
 			</div>
 		</div>
