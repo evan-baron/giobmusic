@@ -9,6 +9,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './hero.module.scss';
 
 // Components imports
+import CTA from '../ctaButton/CTA';
 
 // Context imports
 import { useAppContext } from '@/app/context/AppContext';
@@ -103,14 +104,16 @@ const Hero = () => {
 							</div>
 						</div>
 					</div>
-					<button
+					<CTA parent='hero' />
+					{/* <button
 						type='button'
 						className={`${styles.cta} ${
 							!isTouchDevice && styles['hover-enabled']
 						}`}
+						onClick={() => (window.location.hash = 'contact')}
 					>
 						Book Now
-					</button>
+					</button> */}
 				</div>
 			</div>
 		</div>

@@ -11,6 +11,9 @@ import styles from './header.module.scss';
 // Hooks imports
 import { useScrollValue } from '../../../lib/hooks/useScrollValue';
 
+// Components imports
+import CTA from '../ctaButton/CTA';
+
 // Context
 import { useAppContext } from '@/app/context/AppContext';
 
@@ -68,7 +71,7 @@ function Header() {
 								className={`${styles.link} ${
 									!isTouchDevice && styles['hover-enabled']
 								}`}
-								href='/services'
+								href='#music'
 							>
 								Music
 							</Link>
@@ -78,7 +81,7 @@ function Header() {
 								className={`${styles.link} ${
 									!isTouchDevice && styles['hover-enabled']
 								}`}
-								href='/faq'
+								href='#events'
 							>
 								Events
 							</Link>
@@ -88,7 +91,7 @@ function Header() {
 								className={`${styles.link} ${
 									!isTouchDevice && styles['hover-enabled']
 								}`}
-								href='/blog'
+								href='/gallery'
 							>
 								Gallery
 							</Link>
@@ -98,7 +101,17 @@ function Header() {
 								className={`${styles.link} ${
 									!isTouchDevice && styles['hover-enabled']
 								}`}
-								href='/faq'
+								href='/services'
+							>
+								Services
+							</Link>
+						</li>
+						<li>
+							<Link
+								className={`${styles.link} ${
+									!isTouchDevice && styles['hover-enabled']
+								}`}
+								href='#reviews'
 							>
 								Reviews
 							</Link>
