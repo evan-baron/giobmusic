@@ -3,6 +3,7 @@
 // Library imports
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 // Hooks imports
 
@@ -134,7 +135,16 @@ const Summary = () => {
 							to life.
 						</p>
 					</div>
-					<CTA parent='summary' />
+					<div className={styles.cta}>
+						<CTA parent='summary' />
+						<p>
+							For a full list of services,{' '}
+							<Link href='/services' className={styles.link}>
+								click here
+							</Link>
+							.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -110,6 +110,19 @@
 					box-shadow: 0.5rem 0.5rem 1rem hsl(0, 0%, 0%, 0.5);
 				}
 			}
+
+			.cta {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1rem;
+				color: white;
+
+				.link {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
