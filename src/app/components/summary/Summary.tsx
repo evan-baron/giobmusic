@@ -87,7 +87,7 @@ const Summary = () => {
 									src={img}
 									alt={`Image ${idx + 1}`}
 									fill
-									objectFit='cover'
+									style={{ objectFit: 'cover' }}
 								/>
 							</div>
 						))}
