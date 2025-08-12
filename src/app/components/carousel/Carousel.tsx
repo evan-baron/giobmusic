@@ -86,12 +86,18 @@ const Carousel = ({
 
 		if (carouselRef.current) {
 			if (direction === 'left') {
+				// Allowing for animation to occur
 				setIsTransitioning(true);
+
+				// Update transform distance
 				setTransformDist((prev) => prev + shift);
 
+				// If currentIndex - 1 is in the 'first half' of the photos array... else...
 				if (currentIndex - 1 < photos.length / 2) {
 					setCurrentIndex((prev: number) => prev - 1 + photos.length);
 					setClickDisabled(true);
+
+					// Turn off animation and reset transform distance (gives infinite scroll effect)
 					setTimeout(() => {
 						setIsTransitioning(false);
 						setTransformDist((prev) => prev * -1 + shift * 2);
@@ -104,10 +110,12 @@ const Carousel = ({
 				setIsTransitioning(true);
 				setTransformDist((prev) => prev - shift);
 
+				// If currentIndex - 1 is in the 'second half' of the photos array... else...
 				if (currentIndex + 1 > photos.length * 1.5) {
 					setCurrentIndex((prev: number) => prev + 1 - photos.length);
 					setClickDisabled(true);
 
+					// Turn off animation and reset transform distance (gives infinite scroll effect)
 					setTimeout(() => {
 						setIsTransitioning(false);
 						setTransformDist((prev) => prev * -1 - shift * 2);
@@ -123,6 +131,7 @@ const Carousel = ({
 	const handleClick = (index: number) => {
 		if (clickDisabled) return;
 
+		// Turn on animation
 		setIsTransitioning(true);
 
 		// Less then half remaining to the left
@@ -152,6 +161,7 @@ const Carousel = ({
 			setTransformDist((prev) => prev - defaultChange);
 			setClickDisabled(true);
 
+			// Turn off animation and reset transform distance (gives infinite scroll effect), also disable click so that user can't cause a race error
 			setTimeout(() => {
 				setIsTransitioning(false);
 				setTransformDist((prev) => {
