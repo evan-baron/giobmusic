@@ -39,6 +39,7 @@ const Carousel = ({
 	useEffect(() => {
 		const resizeCarousel = () => {
 			if (carouselRef.current) {
+				// Update transform distance
 				setTransformDist((currentIndex - photos.length) * shift * -1);
 
 				const length = Math.floor(
@@ -124,7 +125,10 @@ const Carousel = ({
 
 		setIsTransitioning(true);
 
+		// Less then half remaining to the left
 		const isOuterLimitLeft = index < photos.length / 2;
+
+		// Less than half remaining to the right
 		const isOuterLimitRight = index > photos.length * 1.5;
 
 		// Determining new index if outer limits are crossed or not
