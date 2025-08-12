@@ -209,12 +209,12 @@ const Carousel = ({
 							className={styles['carousel-image']}
 							key={idx}
 							onClick={() => handleClick(idx)}
+							style={{ width: `${imageWidth}px`, height: `${imageWidth}px` }}
 						>
 							<Image
 								src={img}
 								alt={`Gallery image ${idx + 1}`}
-								width={imageDimension}
-								height={imageDimension}
+								fill
 								style={{ objectFit: 'cover', borderRadius: '1rem' }}
 							/>
 						</div>
