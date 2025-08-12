@@ -28,12 +28,9 @@ const Carousel = ({
 	const carouselPhotos = [...photos, ...photos, photos[0]];
 
 	const carouselRef = useRef<HTMLDivElement>(null);
-	// const imageWidth = 140; // Width of each image in pixels
-	// const gapWidth = 16; // gapWidth between images in pixels
-	// const transitionTime = 0.4; // Transition time in seconds
 
 	const [currentIndex, setCurrentIndex] = useState(photos.length);
-	const [imageDimension, setImageDimension] = useState(140);
+	const [imageDimension, setImageDimension] = useState(imageWidth);
 	const [transformDist, setTransformDist] = useState(0);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [clickDisabled, setClickDisabled] = useState(false);
