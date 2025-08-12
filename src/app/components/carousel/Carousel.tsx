@@ -13,21 +13,31 @@ import styles from './carousel.module.scss';
 
 // Context imports
 
-const Carousel = ({ photos }: { photos: string[] }) => {
+const Carousel = ({
+	photos,
+	imageWidth,
+	gapWidth,
+	transitionTime,
+}: {
+	photos: string[];
+	imageWidth: number;
+	gapWidth: number;
+	transitionTime: number;
+}) => {
 	// Extra photos[0] added at end to make length odd for centering purposes
 	const carouselPhotos = [...photos, ...photos, photos[0]];
 
 	const carouselRef = useRef<HTMLDivElement>(null);
-	const desiredImageWidth = 140; // Width of each image in pixels
-	const GAP = 16; // Gap between images in pixels
-	const transitionTime = 0.4; // Transition time in seconds
+	// const imageWidth = 140; // Width of each image in pixels
+	// const gapWidth = 16; // gapWidth between images in pixels
+	// const transitionTime = 0.4; // Transition time in seconds
 
 	const [currentIndex, setCurrentIndex] = useState(photos.length);
 	const [imageDimension, setImageDimension] = useState(140);
 	const [transformDist, setTransformDist] = useState(0);
 	const [isTransitioning, setIsTransitioning] = useState(false);
 	const [clickDisabled, setClickDisabled] = useState(false);
-	const [shift, setShift] = useState((imageDimension + GAP) / 16);
+	const [shift, setShift] = useState((imageDimension + gapWidth) / 16);
 
 	useEffect(() => {
 		const resizeCarousel = () => {
@@ -35,27 +45,28 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 				setTransformDist((currentIndex - photos.length) * shift * -1);
 
 				const length = Math.floor(
-					carouselRef.current.offsetWidth / (desiredImageWidth + GAP)
+					carouselRef.current.offsetWidth / (imageWidth + gapWidth)
 				);
 
 				if (length % 2 === 0) {
 					setImageDimension(
-						(carouselRef.current.offsetWidth - GAP * (length + 1)) /
+						(carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
 							(length + 1)
 					);
 					setShift(
-						((carouselRef.current.offsetWidth - GAP * (length + 1)) /
+						((carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
 							(length + 1) +
-							GAP) /
+							gapWidth) /
 							16
 					);
 				} else {
 					setImageDimension(
-						(carouselRef.current.offsetWidth - GAP * (length - 1)) / length
+						(carouselRef.current.offsetWidth - gapWidth * (length - 1)) / length
 					);
 					setShift(
-						((carouselRef.current.offsetWidth - GAP * (length - 1)) / length +
-							GAP) /
+						((carouselRef.current.offsetWidth - gapWidth * (length - 1)) /
+							length +
+							gapWidth) /
 							16
 					);
 				}
@@ -175,7 +186,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 				<div
 					className={styles['carousel-track']}
 					style={{
-						gap: `${GAP / 16}rem`,
+						gap: `${gapWidth / 16}rem`,
 						transform: `translateX(${transformDist}rem)`,
 						transition: isTransitioning
 							? `transform ${transitionTime}s`

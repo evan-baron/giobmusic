@@ -30,12 +30,22 @@ const Gallery = () => {
 		'/gallery/piano-suspenders.jpg',
 	];
 
+	// Carousel settings
+	const imageWidth = 140; // Width of each image in pixels
+	const gapWidth = 16; // Gap between images in pixels
+	const transitionTime = 0.4; // Transition time in seconds
+
 	return (
 		<div className={styles['gallery-wrapper']}>
 			<div className={styles.gallery}>
 				<div className={styles.content}>
 					<h2>Gallery</h2>
-					<Carousel photos={photos} />
+					<Carousel
+						photos={photos}
+						imageWidth={imageWidth}
+						gapWidth={gapWidth}
+						transitionTime={transitionTime}
+					/>
 				</div>
 			</div>
 		</div>
