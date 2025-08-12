@@ -42,15 +42,19 @@ const Carousel = ({
 				// Update transform distance
 				setTransformDist((currentIndex - photos.length) * shift * -1);
 
+				// Determining how many images can fit in the carousel
 				const length = Math.floor(
 					carouselRef.current.offsetWidth / (imageWidth + gapWidth)
 				);
 
 				if (length % 2 === 0) {
+					// If even, set image dimension based on available space + 1
 					setImageDimension(
 						(carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
 							(length + 1)
 					);
+
+					// Update shift based on new image dimension
 					setShift(
 						((carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
 							(length + 1) +
@@ -61,6 +65,7 @@ const Carousel = ({
 					setImageDimension(
 						(carouselRef.current.offsetWidth - gapWidth * (length - 1)) / length
 					);
+
 					setShift(
 						((carouselRef.current.offsetWidth - gapWidth * (length - 1)) /
 							length +
@@ -78,8 +83,6 @@ const Carousel = ({
 			window.removeEventListener('resize', resizeCarousel);
 		};
 	}, [imageDimension]);
-
-	useEffect(() => {}, [imageDimension]);
 
 	const handleScroll = (direction: string) => {
 		if (clickDisabled) return;
@@ -177,7 +180,8 @@ const Carousel = ({
 	};
 
 	return (
-		<>
+		<div className={styles['carousel-wrapper']}>
+			{/* Left and right arrows */}
 			<div className={styles['gallery-image']}>
 				<div className={styles.left} onClick={() => handleScroll('left')}></div>
 				<div className={styles.image}>
@@ -209,7 +213,10 @@ const Carousel = ({
 							className={styles['carousel-image']}
 							key={idx}
 							onClick={() => handleClick(idx)}
-							style={{ width: `${imageWidth}px`, height: `${imageWidth}px` }}
+							style={{
+								width: `${imageDimension}px`,
+								height: `${imageDimension}px`,
+							}}
 						>
 							<Image
 								src={img}
@@ -221,7 +228,7 @@ const Carousel = ({
 					))}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

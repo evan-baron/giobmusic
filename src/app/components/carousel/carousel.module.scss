@@ -1,90 +1,99 @@
-.gallery-image {
-	height: 100%;
+.carousel-wrapper {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	gap: 2rem;
 	align-items: center;
-	gap: 1rem;
-	user-select: none;
+	justify-content: space-between;
 
-	.left {
-		height: 4rem;
-		width: 4rem;
-		border-top: 0.25rem solid white;
-		border-left: 0.25rem solid white;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-		transform: rotate(-45deg);
-		opacity: 0.5;
-
-		@media (hover: hover) and (pointer: fine) {
-			&:hover {
-				opacity: 1;
-			}
-		}
-	}
-
-	.right {
-		height: 4rem;
-		width: 4rem;
-		border-top: 0.25rem solid white;
-		border-right: 0.25rem solid white;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: pointer;
-		transform: rotate(45deg);
-		opacity: 0.5;
-
-		@media (hover: hover) and (pointer: fine) {
-			&:hover {
-				opacity: 1;
-			}
-		}
-	}
-
-	.image {
-		position: relative;
-		width: 66%;
-		aspect-ratio: 16/9;
-		border: 2px solid white;
-		box-shadow: 0.5rem 0.5rem 2rem black;
-
-		border-radius: 1rem;
-	}
-}
-
-.carouseltrack-wrapper {
-	width: 66%;
-	display: flex;
-	gap: 1rem;
-	overflow: hidden;
-	position: relative;
-
-	.carousel-track {
+	.gallery-image {
+		height: 100%;
 		width: 100%;
-
 		display: flex;
-		will-change: transform;
-		align-items: center;
 		justify-content: center;
-		padding: 1rem 0;
+		align-items: center;
+		gap: 1rem;
+		user-select: none;
 
-		.carousel-image {
-			height: 100%;
-			aspect-ratio: 1;
-			position: relative;
-			border-radius: 1rem;
-			box-shadow: 0.25rem 0.25rem 0.5rem black;
+		.left {
+			height: 4rem;
+			width: 4rem;
+			border-top: 0.25rem solid white;
+			border-left: 0.25rem solid white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			cursor: pointer;
-			transition: transform 0.2s ease-in-out;
-			user-select: none;
+			transform: rotate(-45deg);
+			opacity: 0.5;
 
 			@media (hover: hover) and (pointer: fine) {
 				&:hover {
-					transform: scale(1.1);
+					opacity: 1;
+				}
+			}
+		}
+
+		.right {
+			height: 4rem;
+			width: 4rem;
+			border-top: 0.25rem solid white;
+			border-right: 0.25rem solid white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			transform: rotate(45deg);
+			opacity: 0.5;
+
+			@media (hover: hover) and (pointer: fine) {
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
+		.image {
+			position: relative;
+			width: 66%;
+			aspect-ratio: 16/9;
+			border: 2px solid white;
+			box-shadow: 0.5rem 0.5rem 2rem black;
+
+			border-radius: 1rem;
+		}
+	}
+
+	.carouseltrack-wrapper {
+		width: 66%;
+		display: flex;
+		gap: 1rem;
+		overflow: hidden;
+		position: relative;
+
+		.carousel-track {
+			width: 100%;
+
+			display: flex;
+			will-change: transform;
+			align-items: center;
+			justify-content: center;
+			padding: 1rem 0;
+
+			.carousel-image {
+				height: 100%;
+				aspect-ratio: 1;
+				position: relative;
+				border-radius: 1rem;
+				box-shadow: 0.25rem 0.25rem 0.5rem black;
+				cursor: pointer;
+				transition: transform 0.2s ease-in-out;
+				user-select: none;
+
+				@media (hover: hover) and (pointer: fine) {
+					&:hover {
+						transform: scale(1.1);
+					}
 				}
 			}
 		}
