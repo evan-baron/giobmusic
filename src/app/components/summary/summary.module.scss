@@ -7,6 +7,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	user-select: none;
 	// z-index: 5;
 	// box-shadow: 0 0 1rem black, 0 0 2rem black;
 
@@ -35,43 +36,64 @@
 			margin: 10rem 0;
 			gap: 2rem;
 
-			.buttons {
-				width: 100%;
-				justify-content: center;
+			.slider-wrapper {
 				display: flex;
-				align-items: flex-end;
-				gap: 2rem;
+				width: 696px;
 
-				.button {
-					width: 200px;
+				.slider {
+					width: 100%;
 					display: flex;
-					flex-direction: column;
-					align-items: center;
 					justify-content: center;
-					gap: 1rem;
-					text-align: center;
-					cursor: pointer;
-					transition: 0.3s transform;
-					font-family: 'Moon Dance', sans-serif;
-					font-size: 2.25rem;
-					color: white;
 
-					&.selected {
-						text-shadow: 2px 2px 1rem black;
-					}
+					.button {
+						will-change: transform, text-shadow;
+						min-width: 232px;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						gap: 1rem;
+						text-align: center;
+						cursor: pointer;
+						transition: 0.3s transform;
+						font-family: 'Moon Dance', sans-serif;
+						font-size: 2.25rem;
+						color: white;
+						padding: 0 1rem;
 
-					&.selected > .image {
-						width: 150px;
-					}
+						&:not(.selected) {
+							transition: text-shadow 0.3s ease-in-out;
 
-					.image {
-						position: relative;
-						border-radius: 50%;
-						width: 115px;
-						aspect-ratio: 1;
-						border: 0.5rem solid white;
-						overflow: hidden;
-						box-shadow: 0.5rem 0.5rem 1rem hsl(0, 0%, 0%, 0.25);
+							@media (hover: hover) and (pointer: fine) {
+								&:hover {
+									text-shadow: 0 0 0.5rem white, 0 0 0.5rem white;
+
+									.image {
+										box-shadow: 0 0 0.5rem white, 0 0 1rem white;
+									}
+								}
+							}
+						}
+
+						&.selected {
+							text-shadow: 0 0 0.5rem white, 0 0 0.5rem white;
+						}
+
+						&.selected > .image {
+							width: 150px;
+							box-shadow: 0 0 0.5rem white, 0 0 1rem white;
+						}
+
+						.image {
+							position: relative;
+							border-radius: 50%;
+							width: 115px;
+							aspect-ratio: 1;
+							border: 0.5rem solid white;
+							overflow: hidden;
+							box-shadow: 0rem 0rem 1rem hsl(0, 0%, 0%, 0.25);
+							transition: box-shadow 0.3s ease-in-out;
+						}
 					}
 				}
 			}
@@ -85,7 +107,7 @@
 				color: white;
 
 				.text {
-					width: 100%;
+					width: 90%;
 					font-size: 1.25rem;
 					text-wrap: pretty;
 					line-height: 1.25;
