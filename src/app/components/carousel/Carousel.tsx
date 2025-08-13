@@ -25,7 +25,6 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 	const [currentPhoto, setCurrentPhoto] = useState(
 		carouselPhotos[currentIndex]
 	);
-	const [prevPhoto, setPrevPhoto] = useState<string | null>(null);
 	const [futurePhoto, setFuturePhoto] = useState(carouselPhotos[currentIndex]);
 	const [isFading, setIsFading] = useState(false);
 
@@ -40,7 +39,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 				setCurrentPhoto(carouselPhotos[currentIndex]);
 				setPrevIndex(currentIndex);
 				setIsFading(false);
-			}, 450);
+			}, 450); // This timeout must be SLIGHTLY less than the animation duration to avoid flashing - 50ms recommended
 		}
 	}, [currentIndex]);
 

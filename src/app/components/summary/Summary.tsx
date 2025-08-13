@@ -85,7 +85,7 @@ const Summary = () => {
 				setPrevIndex(selectedIndex);
 				setCurrentText(carouselOptions[selectedIndex].description);
 				setIsFading(false);
-			}, 450); // match your fade duration
+			}, 450); // This timeout must be SLIGHTLY less than the animation duration to avoid flashing - 50ms recommended
 		}
 	}, [selectedIndex]);
 
