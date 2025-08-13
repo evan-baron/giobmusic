@@ -17,6 +17,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 	const carouselPhotos = [...photos, ...photos, photos[0]];
 
 	const [currentIndex, setCurrentIndex] = useState(photos.length);
+	const [prevIndex, setPrevIndex] = useState(currentIndex);
 	const [currentTransformDist, setCurrentTransformDist] = useState(0);
 	const [isAnimating, setIsAnimating] = useState(true);
 	const [clickEnabled, setClickEnabled] = useState(true);
@@ -25,17 +26,21 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 		carouselPhotos[currentIndex]
 	);
 	const [prevPhoto, setPrevPhoto] = useState<string | null>(null);
+	const [futurePhoto, setFuturePhoto] = useState(carouselPhotos[currentIndex]);
 	const [isFading, setIsFading] = useState(false);
 
 	useEffect(() => {
-		if (carouselPhotos[currentIndex] !== currentPhoto) {
+		if (
+			currentIndex !== prevIndex &&
+			carouselPhotos[currentIndex] !== carouselPhotos[prevIndex]
+		) {
 			setIsFading(true);
-			setPrevPhoto(currentPhoto);
+			setFuturePhoto(carouselPhotos[currentIndex]);
 			setTimeout(() => {
 				setCurrentPhoto(carouselPhotos[currentIndex]);
-				setPrevPhoto(null);
+				setPrevIndex(currentIndex);
 				setIsFading(false);
-			}, 300); // match your fade duration
+			}, 450);
 		}
 	}, [currentIndex]);
 
@@ -132,7 +137,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 				setTimeout(() => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev + photos.length);
-					setTimeout(() => setIsAnimating(true), 10);
+					setTimeout(() => setIsAnimating(true), 100);
 				}, 300);
 			} else {
 				setCurrentTransformDist((prev) => prev + diff);
@@ -147,7 +152,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 				setTimeout(() => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev - photos.length);
-					setTimeout(() => setIsAnimating(true), 10);
+					setTimeout(() => setIsAnimating(true), 100);
 				}, 300);
 			} else {
 				setCurrentTransformDist((prev) => prev + diff);
@@ -160,19 +165,6 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 			<div className={styles['gallery-image']}>
 				<div className={styles.left} onClick={() => handleScroll('left')}></div>
 				<div className={styles.image}>
-					{prevPhoto && (
-						<Image
-							src={prevPhoto}
-							className={styles['displayed-image']}
-							alt='Gallery image'
-							fill
-							style={{
-								opacity: isFading ? 0 : 1,
-								transition: 'opacity 0.3s ease-in-out',
-								zIndex: 5,
-							}}
-						/>
-					)}
 					<Image
 						src={currentPhoto}
 						className={styles['displayed-image']}
@@ -180,10 +172,21 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 						fill
 						style={{
 							opacity: isFading ? 0 : 1,
-							transition: 'opacity 0.3s ease-in-out',
-							zIndex: 5,
+							transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
 						}}
 					/>
+					{futurePhoto && (
+						<Image
+							src={futurePhoto}
+							className={styles['displayed-image']}
+							alt='Gallery image'
+							fill
+							style={{
+								opacity: isFading ? 1 : 0,
+								transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+							}}
+						/>
+					)}
 				</div>
 				<div
 					className={styles.right}

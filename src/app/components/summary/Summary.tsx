@@ -1,7 +1,7 @@
 'use client';
 
 // Library imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -54,8 +54,93 @@ const Summary = () => {
 	const carouselOptions = [...options, ...options, options[0]];
 
 	const [selectedIndex, setSelectedIndex] = useState(options.length);
+	const [prevIndex, setPrevIndex] = useState(selectedIndex);
 	const [currentTransformDist, setCurrentTransformDist] = useState(0);
 	const [isAnimating, setIsAnimating] = useState(true);
+	const [clickEnabled, setClickEnabled] = useState(true);
+
+	const [currentPhotos, setCurrentPhotos] = useState(
+		carouselOptions[selectedIndex].images
+	);
+	const [futurePhotos, setFuturePhotos] = useState(
+		carouselOptions[selectedIndex].images
+	);
+	const [currentText, setCurrentText] = useState(
+		carouselOptions[selectedIndex].description
+	);
+	const [futureText, setFutureText] = useState('');
+	const [isFading, setIsFading] = useState(false);
+
+	useEffect(() => {
+		if (
+			selectedIndex !== prevIndex &&
+			carouselOptions[selectedIndex].images[0] !==
+				carouselOptions[prevIndex].images[0]
+		) {
+			setIsFading(true);
+			setFutureText(carouselOptions[selectedIndex].description);
+			setFuturePhotos(carouselOptions[selectedIndex].images);
+			setTimeout(() => {
+				setCurrentPhotos(carouselOptions[selectedIndex].images);
+				setPrevIndex(selectedIndex);
+				setCurrentText(carouselOptions[selectedIndex].description);
+				setIsFading(false);
+			}, 450); // match your fade duration
+		}
+	}, [selectedIndex]);
+
+	const handleClick = (index: number) => {
+		if (!clickEnabled) return;
+
+		// Click spam prevention
+		setClickEnabled(false);
+
+		// Turning click back on
+		setTimeout(() => {
+			setClickEnabled(true);
+		}, 300);
+
+		if (index === selectedIndex) return;
+
+		const diff = index - selectedIndex;
+		const direction = diff > 0 ? 'right' : 'left';
+
+		// Reached left boundary for infinite scroll purposes
+		const reachedLeftBound = index < options.length * 0.5;
+
+		// Reached right boundary for infinite scroll purposes
+		const reachedRightBound = index > options.length * 1.5;
+
+		if (direction === 'left') {
+			if (reachedLeftBound) {
+				setSelectedIndex(index);
+				setCurrentTransformDist((prev) => prev + diff);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setSelectedIndex(index + options.length);
+					setCurrentTransformDist((prev) => prev + options.length);
+					setTimeout(() => setIsAnimating(true), 100);
+				}, 500);
+			} else {
+				setSelectedIndex(index);
+				setCurrentTransformDist((prev) => prev + diff);
+			}
+		} else if (direction === 'right') {
+			if (reachedRightBound) {
+				setSelectedIndex(index);
+				setCurrentTransformDist((prev) => prev + diff);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setSelectedIndex(index - options.length);
+					setCurrentTransformDist((prev) => prev - options.length);
+					setTimeout(() => setIsAnimating(true), 100);
+				}, 500);
+			} else {
+				setSelectedIndex(index);
+				setCurrentTransformDist((prev) => prev + diff);
+			}
+		}
+	};
 
 	return (
 		<div className={styles['summary-wrapper']}>
@@ -75,8 +160,8 @@ const Summary = () => {
 									key={idx}
 									className={`${styles.button} ${
 										idx === selectedIndex ? styles.selected : ''
-									}`}
-									onClick={() => setSelectedIndex(idx)}
+									} ${isAnimating && styles.animating}`}
+									onClick={() => handleClick(idx)}
 								>
 									<div className={styles.image}>
 										<Image src={option.img} alt={option.label} fill />
@@ -88,20 +173,75 @@ const Summary = () => {
 					</div>
 
 					<div className={styles.images}>
-						{carouselOptions[selectedIndex].images.map((img, idx) => (
-							<div key={idx} className={styles.image}>
+						<div className={styles.image}>
+							<Image
+								src={currentPhotos[0]}
+								alt={`Image 1`}
+								fill
+								style={{
+									objectFit: 'cover',
+									opacity: isFading ? 0 : 1,
+									transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+								}}
+							/>
+							{futurePhotos[0] && (
 								<Image
-									src={img}
-									alt={`Image ${idx + 1}`}
+									src={futurePhotos[0]}
+									alt={`Image 1`}
 									fill
-									style={{ objectFit: 'cover' }}
+									style={{
+										objectFit: 'cover',
+										opacity: isFading ? 1 : 0,
+										transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+									}}
 								/>
-							</div>
-						))}
+							)}
+						</div>
+						<div className={styles.image}>
+							<Image
+								src={currentPhotos[1]}
+								alt={`Image 1`}
+								fill
+								style={{
+									objectFit: 'cover',
+									opacity: isFading ? 0 : 1,
+									transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+								}}
+							/>
+							{futurePhotos[1] && (
+								<Image
+									src={futurePhotos[1]}
+									alt={`Image 1`}
+									fill
+									style={{
+										objectFit: 'cover',
+										opacity: isFading ? 1 : 0,
+										transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+									}}
+								/>
+							)}
+						</div>
 					</div>
 					<div className={styles.description}>
-						<p className={styles.text}>
-							{carouselOptions[selectedIndex].description}
+						<p
+							className={styles.text}
+							style={{
+								opacity: isFading ? 0 : 1,
+								transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+							}}
+						>
+							{currentText}
+						</p>
+						<p
+							className={styles.text}
+							style={{
+								position: 'absolute',
+								top: '0',
+								opacity: isFading ? 1 : 0,
+								transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
+							}}
+						>
+							{futureText}
 						</p>
 						<p className={styles.text}>
 							Need a larger ensemble? Gio's network of top-tier musicians,
