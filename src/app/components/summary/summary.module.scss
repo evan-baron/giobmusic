@@ -21,7 +21,7 @@
 
 		.content {
 			width: 80%;
-			height: 1000px;
+			// height: 1000px;
 			display: flex;
 			flex-direction: column;
 			justify-content: space-between;
@@ -85,7 +85,7 @@
 				color: white;
 
 				.text {
-					width: 80%;
+					width: 100%;
 					font-size: 1.25rem;
 					text-wrap: pretty;
 					line-height: 1.25;
