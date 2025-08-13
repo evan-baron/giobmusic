@@ -27,11 +27,9 @@ const NewCarousel = ({ photos }: { photos: string[] }) => {
 	const [prevPhoto, setPrevPhoto] = useState<string | null>(null);
 	const [isFading, setIsFading] = useState(false);
 
-	const displayedPhoto = carouselPhotos[currentIndex];
-
 	useEffect(() => {
-		setIsFading(true);
 		if (carouselPhotos[currentIndex] !== currentPhoto) {
+			setIsFading(true);
 			setPrevPhoto(currentPhoto);
 			setTimeout(() => {
 				setCurrentPhoto(carouselPhotos[currentIndex]);

@@ -1,195 +1,188 @@
 'use client';
 
 // Library imports
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 // Hooks imports
 
 // Styles imports
-import styles from './carousel.module.scss';
+import styles from './newCarousel.module.scss';
 
 // Components imports
 
 // Context imports
 
-const Carousel = ({
-	photos,
-	imageWidth,
-	gapWidth,
-	transitionTime,
-}: {
-	photos: string[];
-	imageWidth: number;
-	gapWidth: number;
-	transitionTime: number;
-}) => {
-	// Extra photos[0] added at end to make length odd for centering purposes
+const Carousel = ({ photos }: { photos: string[] }) => {
 	const carouselPhotos = [...photos, ...photos, photos[0]];
 
-	const carouselRef = useRef<HTMLDivElement>(null);
-
 	const [currentIndex, setCurrentIndex] = useState(photos.length);
-	const [imageDimension, setImageDimension] = useState(imageWidth);
-	const [transformDist, setTransformDist] = useState(0);
-	const [isTransitioning, setIsTransitioning] = useState(false);
-	const [clickDisabled, setClickDisabled] = useState(false);
-	const [shift, setShift] = useState((imageDimension + gapWidth) / 16);
+	const [currentTransformDist, setCurrentTransformDist] = useState(0);
+	const [isAnimating, setIsAnimating] = useState(true);
+	const [clickEnabled, setClickEnabled] = useState(true);
+
+	const [currentPhoto, setCurrentPhoto] = useState(
+		carouselPhotos[currentIndex]
+	);
+	const [prevPhoto, setPrevPhoto] = useState<string | null>(null);
+	const [isFading, setIsFading] = useState(false);
 
 	useEffect(() => {
-		const resizeCarousel = () => {
-			if (carouselRef.current) {
-				// Update transform distance
-				setTransformDist((currentIndex - photos.length) * shift * -1);
+		if (carouselPhotos[currentIndex] !== currentPhoto) {
+			setIsFading(true);
+			setPrevPhoto(currentPhoto);
+			setTimeout(() => {
+				setCurrentPhoto(carouselPhotos[currentIndex]);
+				setPrevPhoto(null);
+				setIsFading(false);
+			}, 300); // match your fade duration
+		}
+	}, [currentIndex]);
 
-				// Determining how many images can fit in the carousel
-				const length = Math.floor(
-					carouselRef.current.offsetWidth / (imageWidth + gapWidth)
-				);
+	const handleScroll = (direction: 'left' | 'right') => {
+		// Click spam prevention
+		if (!clickEnabled) return;
 
-				if (length % 2 === 0) {
-					// If even, set image dimension based on available space + 1
-					setImageDimension(
-						(carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
-							(length + 1)
-					);
+		// Turning click off for spam click prevention
+		setClickEnabled(false);
 
-					// Update shift based on new image dimension
-					setShift(
-						((carouselRef.current.offsetWidth - gapWidth * (length + 1)) /
-							(length + 1) +
-							gapWidth) /
-							16
-					);
+		// Turning click back on
+		setTimeout(() => {
+			setClickEnabled(true);
+		}, 300);
+
+		// Reached left boundary for infinite scroll purposes
+		const reachedLeftBound = currentTransformDist - 1 < photos.length * -0.5;
+
+		// Reached right boundary for infinite scroll purposes
+		const reachedRightBound = currentTransformDist + 1 > photos.length * 0.5;
+
+		if (direction === 'left') {
+			setCurrentIndex((prevIndex) => {
+				// Checking if reached left boundary
+				if (prevIndex - 1 < photos.length * 0.5) {
+					return prevIndex - 1 + photos.length;
 				} else {
-					setImageDimension(
-						(carouselRef.current.offsetWidth - gapWidth * (length - 1)) / length
-					);
-
-					setShift(
-						((carouselRef.current.offsetWidth - gapWidth * (length - 1)) /
-							length +
-							gapWidth) /
-							16
-					);
+					return prevIndex - 1;
 				}
+			});
+
+			if (reachedLeftBound) {
+				setCurrentTransformDist((prev) => prev - 1);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setCurrentTransformDist((prev) => prev + photos.length);
+					setTimeout(() => setIsAnimating(true), 10);
+				}, 300);
+			} else {
+				setCurrentTransformDist((prev) => prev - 1);
 			}
-		};
-
-		window.addEventListener('resize', resizeCarousel);
-		resizeCarousel();
-
-		return () => {
-			window.removeEventListener('resize', resizeCarousel);
-		};
-	}, [imageDimension]);
-
-	const handleScroll = (direction: string) => {
-		if (clickDisabled) return;
-
-		if (carouselRef.current) {
-			if (direction === 'left') {
-				// Allowing for animation to occur
-				setIsTransitioning(true);
-
-				// Update transform distance
-				setTransformDist((prev) => prev + shift);
-
-				// If currentIndex - 1 is in the 'first half' of the photos array... else...
-				if (currentIndex - 1 < photos.length / 2) {
-					setCurrentIndex((prev: number) => prev - 1 + photos.length);
-					setClickDisabled(true);
-
-					// Turn off animation and reset transform distance (gives infinite scroll effect)
-					setTimeout(() => {
-						setIsTransitioning(false);
-						setTransformDist((prev) => prev * -1 + shift * 2);
-						setClickDisabled(false);
-					}, transitionTime * 1000);
+		} else if (direction === 'right') {
+			setCurrentIndex((prevIndex) => {
+				// Checking if reached right boundary
+				if (prevIndex + 1 > photos.length * 1.5) {
+					return prevIndex + 1 - photos.length;
 				} else {
-					setCurrentIndex((prev: number) => prev - 1);
+					return prevIndex + 1;
 				}
-			} else if (direction === 'right') {
-				setIsTransitioning(true);
-				setTransformDist((prev) => prev - shift);
+			});
 
-				// If currentIndex - 1 is in the 'second half' of the photos array... else...
-				if (currentIndex + 1 > photos.length * 1.5) {
-					setCurrentIndex((prev: number) => prev + 1 - photos.length);
-					setClickDisabled(true);
-
-					// Turn off animation and reset transform distance (gives infinite scroll effect)
-					setTimeout(() => {
-						setIsTransitioning(false);
-						setTransformDist((prev) => prev * -1 - shift * 2);
-						setClickDisabled(false);
-					}, transitionTime * 1000);
-				} else {
-					setCurrentIndex((prev: number) => prev + 1);
-				}
+			if (reachedRightBound) {
+				setCurrentTransformDist((prev) => prev + 1);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setCurrentTransformDist((prev) => prev - photos.length);
+					setTimeout(() => setIsAnimating(true), 10);
+				}, 300);
+			} else {
+				setCurrentTransformDist((prev) => prev + 1);
 			}
 		}
 	};
 
 	const handleClick = (index: number) => {
-		if (clickDisabled) return;
+		if (!clickEnabled) return;
 
-		// Turn on animation
-		setIsTransitioning(true);
+		// Click spam prevention
+		setClickEnabled(false);
 
-		// Less then half remaining to the left
-		const isOuterLimitLeft = index < photos.length / 2;
+		// Turning click back on
+		setTimeout(() => {
+			setClickEnabled(true);
+		}, 300);
 
-		// Less than half remaining to the right
-		const isOuterLimitRight = index > photos.length * 1.5;
+		if (index === currentIndex) return;
 
-		// Determining new index if outer limits are crossed or not
-		const newIndex = () => {
-			if (isOuterLimitLeft) {
-				return index + photos.length;
-			} else if (isOuterLimitRight) {
-				return index - photos.length;
+		const diff = index - currentIndex;
+		const direction = diff > 0 ? 'right' : 'left';
+
+		// Reached left boundary for infinite scroll purposes
+		const reachedLeftBound = index < photos.length * 0.5;
+
+		// Reached right boundary for infinite scroll purposes
+		const reachedRightBound = index > photos.length * 1.5;
+
+		if (direction === 'left') {
+			setCurrentIndex(
+				index < photos.length * 0.5 ? index + photos.length : index
+			);
+
+			if (reachedLeftBound) {
+				setCurrentTransformDist((prev) => prev + diff);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setCurrentTransformDist((prev) => prev + photos.length);
+					setTimeout(() => setIsAnimating(true), 10);
+				}, 300);
+			} else {
+				setCurrentTransformDist((prev) => prev + diff);
 			}
-			return index;
-		};
+		} else if (direction === 'right') {
+			setCurrentIndex(
+				index > photos.length * 1.5 ? index - photos.length : index
+			);
 
-		// Calculate the change in transform distance in rem
-		const transformChange = (newIndex() - currentIndex) * shift;
-
-		// Default change
-		const defaultChange = (index - currentIndex) * shift;
-
-		// Update the current index and transform distance
-		if (isOuterLimitLeft || isOuterLimitRight) {
-			setTransformDist((prev) => prev - defaultChange);
-			setClickDisabled(true);
-
-			// Turn off animation and reset transform distance (gives infinite scroll effect), also disable click so that user can't cause a race error
-			setTimeout(() => {
-				setIsTransitioning(false);
-				setTransformDist((prev) => {
-					return prev - transformChange + defaultChange;
-				});
-				setCurrentIndex(newIndex());
-				setClickDisabled(false);
-			}, transitionTime * 1000);
-		} else {
-			setCurrentIndex(newIndex());
-			setTransformDist((prev) => prev - transformChange);
+			if (reachedRightBound) {
+				setCurrentTransformDist((prev) => prev + diff);
+				setTimeout(() => {
+					setIsAnimating(false);
+					setCurrentTransformDist((prev) => prev - photos.length);
+					setTimeout(() => setIsAnimating(true), 10);
+				}, 300);
+			} else {
+				setCurrentTransformDist((prev) => prev + diff);
+			}
 		}
 	};
 
 	return (
-		<div className={styles['carousel-wrapper']}>
-			{/* Left and right arrows */}
+		<div className={styles['newcarousel-wrapper']}>
 			<div className={styles['gallery-image']}>
 				<div className={styles.left} onClick={() => handleScroll('left')}></div>
 				<div className={styles.image}>
+					{prevPhoto && (
+						<Image
+							src={prevPhoto}
+							className={styles['displayed-image']}
+							alt='Gallery image'
+							fill
+							style={{
+								opacity: isFading ? 0 : 1,
+								transition: 'opacity 0.3s ease-in-out',
+								zIndex: 5,
+							}}
+						/>
+					)}
 					<Image
-						src={carouselPhotos[currentIndex]}
+						src={currentPhoto}
+						className={styles['displayed-image']}
 						alt='Gallery image'
 						fill
-						style={{ objectFit: 'cover', borderRadius: '1rem' }}
+						style={{
+							opacity: isFading ? 0 : 1,
+							transition: 'opacity 0.3s ease-in-out',
+							zIndex: 5,
+						}}
 					/>
 				</div>
 				<div
@@ -197,33 +190,27 @@ const Carousel = ({
 					onClick={() => handleScroll('right')}
 				></div>
 			</div>
-			<div className={styles['carouseltrack-wrapper']} ref={carouselRef}>
+			<div className={styles['slider-wrapper']}>
 				<div
-					className={styles['carousel-track']}
-					style={{
-						gap: `${gapWidth / 16}rem`,
-						transform: `translateX(${transformDist}rem)`,
-						transition: isTransitioning
-							? `transform ${transitionTime}s`
-							: 'none',
-					}}
+					className={`${styles.slider} ${isAnimating && styles.animating}`}
+					style={
+						{ '--slider-index': currentTransformDist } as React.CSSProperties
+					}
 				>
-					{carouselPhotos.map((img, idx) => (
+					{carouselPhotos.map((photo, index) => (
 						<div
-							className={styles['carousel-image']}
-							key={idx}
-							onClick={() => handleClick(idx)}
-							style={{
-								width: `${imageDimension}px`,
-								height: `${imageDimension}px`,
-							}}
+							key={index}
+							className={styles['image-wrapper']}
+							onClick={() => handleClick(index)}
 						>
-							<Image
-								src={img}
-								alt={`Gallery image ${idx + 1}`}
-								fill
-								style={{ objectFit: 'cover', borderRadius: '1rem' }}
-							/>
+							<div className={styles['image-inner']}>
+								<Image
+									className={styles.image}
+									src={photo}
+									alt={`Gallery image ${index}`}
+									layout='fill'
+								/>
+							</div>
 						</div>
 					))}
 				</div>

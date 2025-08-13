@@ -11,7 +11,6 @@ import styles from './gallery.module.scss';
 
 // Components imports
 import Carousel from '../carousel/Carousel';
-import NewCarousel from '../carousel/NewCarousel';
 
 // Context imports
 
@@ -34,24 +33,12 @@ const Gallery = () => {
 		'/gallery/piano-suspenders.jpg',
 	];
 
-	// Settings for carousel
-
-	// const imageWidth = 140;
-	// const gapWidth = 16;
-	// const transitionTime = 0.4;
-
 	return (
 		<div className={styles['gallery-wrapper']}>
 			<div className={styles.gallery}>
 				<div className={styles.content}>
 					<h2>Gallery</h2>
-					{/* <Carousel
-						photos={photos}
-						imageWidth={imageWidth}
-						gapWidth={gapWidth}
-						transitionTime={transitionTime}
-					/> */}
-					<NewCarousel photos={photos} />
+					<Carousel photos={photos} />
 				</div>
 			</div>
 		</div>
