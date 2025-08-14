@@ -1,0 +1,64 @@
+.bio-wrapper {
+	width: 100%;
+	height: 1000px;
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+
+	.bio {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 10%;
+
+		.content-wrapper {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			gap: 2rem;
+
+			h2 {
+				font-size: 5rem;
+				color: white;
+			}
+
+			.content {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				display: flex;
+				gap: 2rem;
+				border: 1px solid red;
+
+				.image {
+					position: relative;
+					width: 40%;
+					height: 70%;
+					border: 1px solid red;
+
+					.inner-image {
+						position: relative;
+						width: 100%;
+						height: 100%;
+						aspect-ratio: 9 / 16;
+						object-fit: cover;
+						object-position: center;
+					}
+				}
+
+				.text {
+					width: 60%;
+					color: white;
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+}
