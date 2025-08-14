@@ -29,7 +29,7 @@ const moondance = Moon_Dance({
 
 const redHatDisplay = Red_Hat_Display({
 	variable: '--font-red-hat-display',
-	weight: '400',
+	weight: ['300', '400'],
 	subsets: ['latin'],
 });
 

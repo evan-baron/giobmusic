@@ -24,8 +24,12 @@ function Header() {
 		: useScrollValue('17.5rem', '14rem');
 	const navFontSize = isTouchDevice
 		? '1.25rem'
-		: useScrollValue('2.5rem', '2rem');
-	const ulGap = isTouchDevice ? '2rem' : useScrollValue('3rem', '2rem');
+		: useScrollValue('2rem', '1.5rem');
+	// const navFontSize = isTouchDevice
+	// 	? '1.25rem'
+	// 	: useScrollValue('2.5rem', '2rem');
+	const ulGap = isTouchDevice ? '2rem' : useScrollValue('2rem', '1.5rem');
+	// const ulGap = isTouchDevice ? '2rem' : useScrollValue('3rem', '2rem');
 	const navOpacity = isTouchDevice ? 0.9 : useScrollValue(0, 0.9);
 
 	return (

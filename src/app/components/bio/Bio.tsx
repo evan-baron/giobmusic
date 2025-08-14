@@ -35,10 +35,25 @@ const Bio = () => {
 								</div>
 								<div className={styles.text}>
 									<p>
+										Imagine stepping into the room, serenaded by the warm tones
+										of Spanish guitar or the flowing, elegant melodies of
+										classical piano.
+									</p>
+									{/* <p>
+										Imagine stepping into the room, being serenaded by the warm
+										tones of Spanish guitar or the elegant, flowing melodies of
+										classical piano.
+									</p> */}
+									{/* <p>
+										Imagine stepping into the room and being serenaded by the
+										beautiful sounds of Spanish guitar or elegant classical
+										piano.
+									</p> */}
+									{/* <p>
 										Imagine stepping into the room and being welcomed by the
 										warm strum of Spanish guitar or the graceful notes of
 										classical piano.
-									</p>
+									</p> */}
 								</div>
 							</div>
 							<div className={styles.blob}>
@@ -64,9 +79,9 @@ const Bio = () => {
 						<div className={styles.description}>
 							<p>
 								If your vision is to create an unforgettable experience that
-								stays with your guests long after the night ends, bringing Gio
-								on as your entertainment will set the heartbeat of the evening
-								and leave a lasting impression on everyone who attended.
+								stays with your guests long after the night ends, hiring Gio as
+								your entertainment will set the heartbeat for the evening,
+								leaving a lasting impression on everyone there.
 							</p>
 							{/* <p>
 								If creating an unforgettable experience for your guests is at
@@ -78,8 +93,7 @@ const Bio = () => {
 								accomplished Latin guitarist, Gio has performed at all kinds of
 								venues spanning from the Denver Performing Arts Complex to the
 								Dazzle Jazz Lounge and the Newman Center for the Performing
-								Arts, earning a reputation for captivating audiences well beyond
-								his home stage.
+								Arts, earning a reputation for captivating audiences nationwide.
 							</p>
 						</div>
 						<div className={styles.cta}>
