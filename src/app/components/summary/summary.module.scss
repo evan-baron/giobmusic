@@ -7,6 +7,7 @@
 	align-items: center;
 	justify-content: center;
 	user-select: none;
+	margin: 10rem 0;
 
 	.summary {
 		width: 100%;
@@ -118,12 +119,17 @@
 				gap: 1rem;
 				color: white;
 
+				.text:first-child {
+					height: 125px;
+				}
+
 				.text {
 					width: 90%;
 					font-size: 1.25rem;
 					text-wrap: pretty;
 					line-height: 1.25;
 					word-spacing: 2px;
+					letter-spacing: 0.5px;
 					text-shadow: 2px 2px 1rem black;
 					text-align: center;
 					background: transparent;
@@ -155,6 +161,8 @@
 				align-items: center;
 				gap: 1rem;
 				color: white;
+				word-spacing: 2;
+				letter-spacing: 0.5px;
 
 				.link {
 					text-decoration: underline;
