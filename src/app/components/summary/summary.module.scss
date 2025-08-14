@@ -81,9 +81,12 @@
 						}
 
 						&:not(.selected) {
+							transition: box-shadow 0.3s ease-in-out;
+
 							@media (hover: hover) and (pointer: fine) {
 								&:hover {
 									text-shadow: 0 0 0.5rem white, 0 0 0.5rem white;
+									transition: text-shadow 0.3s ease-in-out;
 
 									.image {
 										box-shadow: 0 0 0.5rem white, 0 0 1rem white;
@@ -101,6 +104,7 @@
 							border: 0.5rem solid white;
 							overflow: hidden;
 							box-shadow: 0rem 0rem 1rem hsl(0, 0%, 0%, 0.25);
+							transition: box-shadow 0.3s ease-in-out;
 						}
 					}
 				}
