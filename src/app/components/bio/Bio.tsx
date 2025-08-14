@@ -20,43 +20,45 @@ const Bio = () => {
 				<div className={styles['content-wrapper']}>
 					<h2>Meet Gio</h2>
 					<div className={styles.content}>
-						<div className={styles.blob}>
-							<div className={styles.image}>
-								<div className={styles['inner-image']}>
-									<Image
-										src='/piano-front.jpg'
-										alt='Gio'
-										layout='fill'
-										objectFit='cover'
-										style={{ transform: 'scaleX(-1)' }}
-									/>
+						<div className={styles.blobs}>
+							<div className={styles.blob}>
+								<div className={styles.image}>
+									<div className={styles['inner-image']}>
+										<Image
+											src='/piano-front.jpg'
+											alt='Gio'
+											layout='fill'
+											objectFit='cover'
+											style={{ transform: 'scaleX(-1)' }}
+										/>
+									</div>
+								</div>
+								<div className={styles.text}>
+									<p>
+										Imagine stepping into the room and being welcomed by the
+										warm strum of Spanish guitar or the graceful notes of
+										classical piano.
+									</p>
 								</div>
 							</div>
-							<div className={styles.text}>
-								<p>
-									Imagine stepping into the room and being welcomed by the warm
-									strum of Spanish guitar or the graceful notes of classical
-									piano.
-								</p>
-							</div>
-						</div>
-						<div className={styles.blob}>
-							<div className={styles.image}>
-								<div className={styles['inner-image']}>
-									<Image
-										src='/guitar-stage.jpg'
-										alt='Gio'
-										layout='fill'
-										objectFit='cover'
-									/>
+							<div className={styles.blob}>
+								<div className={styles.image}>
+									<div className={styles['inner-image']}>
+										<Image
+											src='/guitar-stage.jpg'
+											alt='Gio'
+											layout='fill'
+											objectFit='cover'
+										/>
+									</div>
 								</div>
-							</div>
-							<div className={styles.text}>
-								<p>
-									Moments later, that same musician is lighting up the crowd,
-									singing your favorite upbeat songs and filling the air with
-									energy.
-								</p>
+								<div className={styles.text}>
+									<p>
+										Moments later, that same musician is lighting up the crowd,
+										singing your favorite upbeat songs and filling the air with
+										energy.
+									</p>
+								</div>
 							</div>
 						</div>
 						<div className={styles.description}>

@@ -1,8 +1,8 @@
 'use client';
 
 // Library imports
-import React, { useState, useEffect, useRef } from 'react';
-import Image from 'next/image';
+import React from 'react';
+import Link from 'next/link';
 
 // Hooks imports
 
@@ -11,6 +11,7 @@ import styles from './gallery.module.scss';
 
 // Components imports
 import Carousel from '../carousel/Carousel';
+import CTA from '../ctaButton/CTA';
 
 // Context imports
 
@@ -39,6 +40,16 @@ const Gallery = () => {
 				<div className={styles.content}>
 					<h2>Gallery</h2>
 					<Carousel photos={photos} />
+					<div className={styles.cta}>
+						<CTA parent='summary' />
+						<p>
+							For a full list of services,{' '}
+							<Link href='/services' className={styles.link}>
+								click here
+							</Link>
+							.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>

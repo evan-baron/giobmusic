@@ -1,6 +1,6 @@
 .bio-wrapper {
 	width: 100%;
-	height: fit-content;
+	// height: 100vh;
 	background-position: center;
 	background-size: cover;
 	// background-image: url('/page-background.jpg');
@@ -18,7 +18,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 5rem 10% 3rem 10%;
+		padding: 5% 10% 3rem 10%;
 		background-color: hsla(0, 0%, 0%, 0.5);
 
 		.content-wrapper {
@@ -27,7 +27,7 @@
 			display: flex;
 			align-items: center;
 			flex-direction: column;
-			gap: 2rem;
+			gap: 3rem;
 
 			h2 {
 				font-size: 5rem;
@@ -37,51 +37,61 @@
 			.content {
 				position: relative;
 				width: 100%;
+				height: 100%;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
+				justify-content: space-between;
 				gap: 2rem;
-				margin-top: 2rem;
 
-				.blob:nth-child(odd) {
-					flex-direction: row-reverse;
-				}
-
-				.blob {
+				.blobs {
+					width: 100%;
+					height: 100%;
 					display: flex;
-					flex-direction: row;
+					flex-direction: column;
 					align-items: center;
-					gap: 3rem;
-					height: 20rem;
-					width: 80%;
+					gap: 1rem;
 
-					.image {
-						position: relative;
-
-						height: 100%;
-						width: 50%;
-						border-radius: 1rem;
-						overflow: hidden;
-						box-shadow: 0.5rem 0.5rem 1rem hsla(0, 0%, 0%, 0.5),
-							0.5rem 0.5rem 2rem hsla(0, 0%, 0%, 0.5);
-						border: 2px solid white;
-
-						.inner-image {
-							position: relative;
-							width: 100%;
-							height: 100%;
-							object-fit: cover;
-							object-position: center;
-						}
+					.blob:nth-child(odd) {
+						flex-direction: row-reverse;
 					}
 
-					.text {
-						width: 50%;
-						color: white;
-						font-size: 2rem;
-						line-height: 1.25;
-						letter-spacing: 0.5px;
-						word-spacing: 2;
+					.blob {
+						display: flex;
+						flex-direction: row;
+						align-items: center;
+						gap: 3rem;
+						height: 20rem;
+						width: 80%;
+
+						.image {
+							position: relative;
+
+							height: 100%;
+							width: 50%;
+							border-radius: 1rem;
+							overflow: hidden;
+							box-shadow: 0.5rem 0.5rem 1rem hsla(0, 0%, 0%, 0.5),
+								0.5rem 0.5rem 2rem hsla(0, 0%, 0%, 0.5);
+							border: 2px solid white;
+
+							.inner-image {
+								position: relative;
+								width: 100%;
+								height: 100%;
+								object-fit: cover;
+								object-position: center;
+							}
+						}
+
+						.text {
+							width: 50%;
+							color: white;
+							font-size: 2rem;
+							line-height: 1.25;
+							letter-spacing: 0.5px;
+							word-spacing: 2;
+						}
 					}
 				}
 
@@ -89,7 +99,7 @@
 					width: 100%;
 					display: flex;
 					flex-direction: column;
-					gap: 2rem;
+					gap: 1rem;
 					margin-top: 1rem;
 
 					p {

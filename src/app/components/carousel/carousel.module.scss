@@ -55,7 +55,7 @@
 
 		.image {
 			position: relative;
-			width: 66%;
+			width: 80%;
 			aspect-ratio: 16/9;
 			border: 2px solid white;
 			box-shadow: 0.5rem 0.5rem 2rem black;
@@ -72,7 +72,7 @@
 
 	.slider-wrapper {
 		--images-displayed: 7; // Change this on window resize
-		width: 66%;
+		width: 80%;
 		overflow: hidden;
 		display: flex;
 		align-items: center;

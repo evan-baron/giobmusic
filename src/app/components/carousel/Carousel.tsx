@@ -7,7 +7,7 @@ import Image from 'next/image';
 // Hooks imports
 
 // Styles imports
-import styles from './newCarousel.module.scss';
+import styles from './carousel.module.scss';
 
 // Components imports
 
