@@ -233,7 +233,7 @@
 				}
 
 				@media (hover: hover) and (pointer: fine) {
-					&:hover {
+					&:not(.disabled):hover {
 						background-color: hsla(0, 0%, 50%, 0.75);
 					}
 				}

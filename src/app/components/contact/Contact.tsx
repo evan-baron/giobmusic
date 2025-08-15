@@ -2,7 +2,6 @@
 
 // Library imports
 import React, { useState } from 'react';
-import Image from 'next/image';
 
 // Axios instance import
 import axiosInstance from '@/lib/utils/axios';

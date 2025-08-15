@@ -35,9 +35,9 @@ const Bio = () => {
 								</div>
 								<div className={styles.text}>
 									<p>
-										Imagine stepping into the room, serenaded by the warm tones
-										of Spanish guitar or the flowing, elegant melodies of
-										classical piano.
+										Imagine stepping into a room, serenaded by warm tones of
+										Spanish guitar or flowing, elegant melodies of classical
+										piano.
 									</p>
 									{/* <p>
 										Imagine stepping into the room, being serenaded by the warm
