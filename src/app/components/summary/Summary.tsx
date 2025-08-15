@@ -39,7 +39,7 @@ const Summary = () => {
 			img: '/business-icon.jpg',
 			images: ['/stage-event.jpg', '/piano-outside.png'],
 			description:
-				"Whether it's an annual gala, a milestone celebration, a grand opening, or a private company dinner, Gio delivers polished, professional entertainment that leaves a lasting impression. From intimate gatherings to full-scale events of 500+ people, he's worked with everyone from CBS to local businesses, dedicating the same energy and versatility he brings to weddings and private parties. Whatever the occasion calls for, you'll get music that keeps your guests engaged from start to finish.",
+				"Whether it's an annual gala, a grand opening, or a private dinner, Gio delivers polished, professional entertainment that leaves a lasting impression. From intimate gatherings to full-scale events of 500+ guests, Gio delivers dynamic performances that energize and engage every audience. Whatever the occasion calls for, you'll get music that keeps your guests engaged from start to finish.",
 		},
 		{
 			key: 'parties',
@@ -47,7 +47,7 @@ const Summary = () => {
 			img: '/party-icon.jpg',
 			images: ['/guitar-red-backdrop.jpg', '/piano-dancing.jpeg'],
 			description:
-				"From embassy receptions in Washington, DC to backyard birthdays in Santa Fe, Gio has brought unforgettable music to gatherings of every kind. Guests get the same quality and versatility he delivers at corporate events and weddings, whether that's singalong crowd favorites, refined instrumental ambience, or a full-scale performance that feels like a private concert. No matter the setting, your party will have the soundtrack it deserves.",
+				"From receptions in Washington, DC to birthdays in Santa Fe, Gio has brought unforgettable music to gatherings of every kind. Gio brings a high level of quality and versatility, whether that's singalong crowd favorites, refined instrumental ambience, or a full-scale performance that feels like a private concert. No matter the setting, your party will have the soundtrack it deserves.",
 		},
 	];
 
