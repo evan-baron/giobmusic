@@ -123,7 +123,8 @@ function Contact({ id }: { id: string }) {
 					<form onSubmit={handleSubmit} className={styles['contact-form']}>
 						<fieldset className={styles['services-wrapper']}>
 							<div id='services' className={styles['services']}>
-								<div
+								<button
+									type='button'
 									className={`${styles.service} ${
 										selectedService === 'wedding' && styles.selected
 									}`}
@@ -135,8 +136,9 @@ function Contact({ id }: { id: string }) {
 									}}
 								>
 									Wedding
-								</div>
-								<div
+								</button>
+								<button
+									type='button'
 									className={`${styles.service} ${
 										selectedService === 'private' && styles.selected
 									}`}
@@ -148,8 +150,9 @@ function Contact({ id }: { id: string }) {
 									}}
 								>
 									Private Event
-								</div>
-								<div
+								</button>
+								<button
+									type='button'
 									className={`${styles.service} ${
 										selectedService === 'other' && styles.selected
 									}`}
@@ -161,7 +164,7 @@ function Contact({ id }: { id: string }) {
 									}}
 								>
 									Other
-								</div>
+								</button>
 							</div>
 						</fieldset>
 

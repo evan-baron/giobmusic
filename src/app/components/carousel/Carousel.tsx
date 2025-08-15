@@ -53,7 +53,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 		// Turning click back on
 		setTimeout(() => {
 			setClickEnabled(true);
-		}, 300);
+		}, 500);
 
 		// Reached left boundary for infinite scroll purposes
 		const reachedLeftBound = currentTransformDist - 1 < photos.length * -0.5;
@@ -77,7 +77,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev + photos.length);
 					setTimeout(() => setIsAnimating(true), 10);
-				}, 300);
+				}, 500);
 			} else {
 				setCurrentTransformDist((prev) => prev - 1);
 			}
@@ -97,7 +97,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev - photos.length);
 					setTimeout(() => setIsAnimating(true), 10);
-				}, 300);
+				}, 500);
 			} else {
 				setCurrentTransformDist((prev) => prev + 1);
 			}
@@ -113,7 +113,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 		// Turning click back on
 		setTimeout(() => {
 			setClickEnabled(true);
-		}, 300);
+		}, 500);
 
 		if (index === currentIndex) return;
 
@@ -137,7 +137,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev + photos.length);
 					setTimeout(() => setIsAnimating(true), 100);
-				}, 300);
+				}, 500);
 			} else {
 				setCurrentTransformDist((prev) => prev + diff);
 			}
@@ -152,7 +152,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 					setIsAnimating(false);
 					setCurrentTransformDist((prev) => prev - photos.length);
 					setTimeout(() => setIsAnimating(true), 100);
-				}, 300);
+				}, 500);
 			} else {
 				setCurrentTransformDist((prev) => prev + diff);
 			}
