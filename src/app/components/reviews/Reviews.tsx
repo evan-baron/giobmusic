@@ -11,7 +11,15 @@ import styles from './reviews.module.scss';
 // Context imports
 
 const Reviews = () => {
-	return <div className={styles['reviews-wrapper']}>Reviews</div>;
+	return (
+		<div className={styles['reviews-wrapper']}>
+			<div className={styles.reviews}>
+				<div className={styles.content}>
+					<h2>Reviews</h2>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Reviews;

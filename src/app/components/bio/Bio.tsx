@@ -22,13 +22,13 @@ const Bio = () => {
 					<div className={styles.content}>
 						<div className={styles.blobs}>
 							<div className={styles.blob}>
-								<div className={styles.image}>
+								<div className={styles['outer-image']}>
 									<div className={styles['inner-image']}>
 										<Image
+											className={styles.image}
 											src='/piano-front.jpg'
 											alt='Gio'
-											layout='fill'
-											objectFit='cover'
+											fill
 											style={{ transform: 'scaleX(-1)' }}
 										/>
 									</div>
@@ -57,13 +57,13 @@ const Bio = () => {
 								</div>
 							</div>
 							<div className={styles.blob}>
-								<div className={styles.image}>
+								<div className={styles['outer-image']}>
 									<div className={styles['inner-image']}>
 										<Image
+											className={styles.image}
 											src='/guitar-stage.jpg'
 											alt='Gio'
-											layout='fill'
-											objectFit='cover'
+											fill
 										/>
 									</div>
 								</div>
