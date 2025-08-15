@@ -169,6 +169,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 						className={styles['displayed-image']}
 						alt='Gallery image'
 						fill
+						priority
 						style={{
 							opacity: isFading ? 0 : 1,
 							transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
@@ -180,6 +181,7 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 							className={styles['displayed-image']}
 							alt='Gallery image'
 							fill
+							priority
 							style={{
 								opacity: isFading ? 1 : 0,
 								transition: isFading ? 'opacity 0.5s ease-in-out' : 'none',
@@ -209,8 +211,9 @@ const Carousel = ({ photos }: { photos: string[] }) => {
 								<Image
 									className={styles.image}
 									src={photo}
+									fill
+									priority
 									alt={`Gallery image ${index}`}
-									layout='fill'
 								/>
 							</div>
 						</div>
