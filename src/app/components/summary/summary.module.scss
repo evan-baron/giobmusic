@@ -27,7 +27,7 @@
 			backdrop-filter: blur(10px);
 			border-radius: 1rem;
 			box-shadow: 0.5rem 0.5rem 2rem hsla(0, 0%, 0%, 0.75);
-			padding: 3rem;
+			padding: 2rem 3rem 3rem 3rem;
 			gap: 2rem;
 
 			.slider-wrapper {
@@ -35,6 +35,7 @@
 				width: 696px;
 				height: 250px;
 				overflow: hidden;
+				padding-top: 1rem;
 
 				.slider {
 					--images-displayed: 3;
