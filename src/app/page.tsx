@@ -22,7 +22,7 @@ export default function Home() {
 				<Bio />
 				<Summary />
 				<Gallery />
-				<Reviews />
+				<Reviews id={'reviews'} />
 				<Contact id={'contact'} />
 			</main>
 			<footer className={styles.footer}></footer>

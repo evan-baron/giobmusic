@@ -20,7 +20,7 @@ import { ReviewData } from '@/app/data/reviews';
 // MUI icons
 import { Star } from '@mui/icons-material';
 
-const Reviews = () => {
+const Reviews = ({ id }: { id: string }) => {
 	const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
 	const [futureReviewIndex, setFutureReviewIndex] = useState(0);
 	const [isFading, setIsFading] = useState(false);
@@ -57,7 +57,7 @@ const Reviews = () => {
 	};
 
 	return (
-		<div className={styles['reviews-wrapper']}>
+		<div className={styles['reviews-wrapper']} id={id}>
 			<div className={styles.reviews}>
 				<div className={styles.content}>
 					<h2>Reviews</h2>
