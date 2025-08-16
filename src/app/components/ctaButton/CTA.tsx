@@ -11,15 +11,10 @@ import styles from './cta.module.scss';
 
 // Components imports
 
-// Context imports
-import { useAppContext } from '@/app/context/AppContext';
-
 const CTA = ({ parent }: { parent: string }) => {
-	const { isTouchDevice } = useAppContext();
-
 	return (
 		<Link
-			href='/booking'
+			href='#contact'
 			type='button'
 			className={`${styles.cta} ${styles[parent]}`}
 		>
