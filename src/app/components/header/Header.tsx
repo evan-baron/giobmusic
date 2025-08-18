@@ -63,23 +63,23 @@ function Header() {
 							</Link>
 						</li>
 						<li>
+							<Link className={styles.link} href='/services'>
+								Services
+							</Link>
+						</li>
+						<li>
 							<Link className={styles.link} href='#music'>
 								Music
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link className={styles.link} href='#events'>
 								Events
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link className={styles.link} href='/gallery'>
 								Gallery
-							</Link>
-						</li>
-						<li>
-							<Link className={styles.link} href='/services'>
-								Services
 							</Link>
 						</li>
 						<li>

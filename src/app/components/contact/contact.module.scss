@@ -175,6 +175,7 @@
 
 						&.selected {
 							background-color: hsla(0, 0%, 50%, 0.5);
+							box-shadow: 0 0 0.5rem white, 0 0 1rem white;
 						}
 
 						&:not(.selected) {
