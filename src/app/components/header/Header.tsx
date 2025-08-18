@@ -42,7 +42,7 @@ function Header() {
 		>
 			<header className={styles.header}>
 				<nav>
-					<Link href='#top'>
+					<Link href='/'>
 						<div
 							className={styles.logo}
 							style={{ height: logoHeight, width: logoWidth }}
