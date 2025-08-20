@@ -82,11 +82,11 @@ function Header() {
 								Gallery
 							</Link>
 						</li>
-						<li>
+						{/* <li>
 							<Link className={styles.link} href='#reviews'>
 								Reviews
 							</Link>
-						</li>
+						</li> */}
 						<li>
 							<Link href='#contact'>Book Now</Link>
 						</li>

@@ -1,3 +1,11 @@
+@font-face {
+	font-family: 'Conso';
+	src: url('/fonts/Conso/Conso-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+	font-display: swap;
+}
+
 .header-wrapper {
 	position: fixed;
 	top: 0;
@@ -13,12 +21,13 @@
 			width: 100%;
 			height: 100%;
 			display: flex;
-			justify-content: center;
+			justify-content: flex-end;
 			align-items: center;
 			// font-family: 'Red Hat Display', sans-serif;
-			// font-weight: 300;
-			font-family: 'Moon Dance', sans-serif;
-
+			font-family: 'Conso', sans-serif !important;
+			font-weight: 100;
+			text-transform: uppercase;
+			// font-family: 'Moon Dance', sans-serif;
 			.logo {
 				position: absolute;
 				top: 50%;

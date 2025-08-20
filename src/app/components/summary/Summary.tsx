@@ -29,7 +29,8 @@ const Summary = () => {
 			key: 'weddings',
 			label: 'Weddings',
 			img: '/wedding-icon-bw.jpg',
-			images: ['/guitar-tux.jpg', '/guitar-corner.jpg'],
+			images: ['/gio-piano-tux-outside.jpg', '/guitar-corner.jpg'],
+			// images: ['/guitar-tux.jpg', '/guitar-corner.jpg'],
 			description:
 				"From the first notes of guitar or piano at your ceremony to singing your favorite hits during cocktail hour, Gio sets the tone for your big day. When it's time to party, he transforms into a high-energy DJ, mixing tracks, jumping in with live instruments, and keeping the dancefloor alive all night. And just like at his corporate events and private parties, every detail is tailored to your crowd and your vision.",
 		},
